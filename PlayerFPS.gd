@@ -18,15 +18,20 @@ signal using
 signal not_using
 
 func _unhandled_input(event: InputEvent) -> void:
+	#Checar se o mouse está visivel;  DEIXAR AQUI;
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 		if Input.is_action_just_pressed("ui_cancel"):
 			get_tree().quit()
+	#CAPTURA O MOUSE DEPOIS DE CLICAR NA TELA;
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#DEIXA O MOUSE VISIVEL QUANDO CLICAR "ESC";
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#CHECAR MOUSE SENDO CAPTURADO;
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
+			#ROTACIONAR CAMERA QUANDO MOUSE SER ROTACIONADO
 			rotate_y(-event.relative.x * sens)
 			camera.rotate_x(-event.relative.y * sens)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40),deg_to_rad(60))

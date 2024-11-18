@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxrhorjdl3y85"]
+
+[ext_resource type="Script" path="res://PlayerFPS.gd" id="1_otsl4"]
+[ext_resource type="Script" path="res://PlayInt.gd" id="2_uavys"]
+[ext_resource type="Texture2D" uid="uid://dw0u8xn5py6sw" path="res://crosshair-icon.png" id="3_8wfo5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ar1x"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nicqi"]
+blend_mode = 1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kal3g"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_otsl4")
+
+[node name="Char_Coll" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2ar1x")
+
+[node name="Pesc" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Pesc"]
+
+[node name="Interaction" type="RayCast3D" parent="Pesc/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+target_position = Vector3(0, 0, -2.5)
+debug_shape_thickness = 5
+script = ExtResource("2_uavys")
+
+[node name="Ui" type="Control" parent="Pesc/Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Pesc/Camera3D/Ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -123.0
+offset_right = 20.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 2
+text = "Interagir(LMB)"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Pesc/Camera3D/Ui"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_nicqi")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8wfo5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="hand" type="Marker3D" parent="Pesc/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="Player_mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_kal3g")
+
+[connection signal="not_using" from="." to="Pesc/Camera3D/Interaction" method="_on_player_not_using"]
+[connection signal="using" from="." to="Pesc/Camera3D/Interaction" method="_on_player_using"]

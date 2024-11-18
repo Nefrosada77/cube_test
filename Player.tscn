@@ -22,11 +22,11 @@ shape = SubResource("CapsuleShape3D_2ar1x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Pesc"]
+fov = 80.0
 
 [node name="Interaction" type="RayCast3D" parent="Pesc/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
 target_position = Vector3(0, 0, -2.5)
-debug_shape_thickness = 5
 script = ExtResource("2_uavys")
 
 [node name="Ui" type="Control" parent="Pesc/Camera3D"]

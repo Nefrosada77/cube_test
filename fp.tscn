@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://btylae1lnobyc"]
+[gd_scene load_steps=43 format=3 uid="uid://btylae1lnobyc"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_ct07m"]
 [ext_resource type="Script" path="res://porta.gd" id="1_k3pk6"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bmg4xbsdb8pbw" path="res://BasketballColor.jpg" id="2_w30gn"]
 [ext_resource type="PackedScene" uid="uid://i86k526kklq4" path="res://cesta.tscn" id="5_k8scn"]
 [ext_resource type="Script" path="res://grav_changer.gd" id="8_jdvuy"]
+[ext_resource type="PackedScene" uid="uid://djphx75fsakvx" path="res://Cenas/guarda.tscn" id="10_d56r3"]
+[ext_resource type="PackedScene" uid="uid://dkvpafmhp4vjx" path="res://Cenas/patrulha_area.tscn" id="11_1hm24"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7jdit"]
 size = Vector2(10, 20)
@@ -250,7 +252,7 @@ shape = SubResource("SphereShape3D_mcn3r")
 material_override = SubResource("StandardMaterial3D_c6vmr")
 mesh = SubResource("SphereMesh_da8eu")
 
-[node name="Player" parent="." instance=ExtResource("1_nhud6")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_nhud6")]
 
 [node name="Grav_changer" type="StaticBody3D" parent="." groups=["Interact"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0)
@@ -261,6 +263,11 @@ mesh = SubResource("BoxMesh_055f0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Grav_changer"]
 shape = SubResource("BoxShape3D_eg5ff")
+
+[node name="guarda" parent="." instance=ExtResource("10_d56r3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431787, 0, 2.21697)
+
+[node name="PatrulhaÁrea" parent="." instance=ExtResource("11_1hm24")]
 
 [connection signal="porta_ab" from="Obsta/Button_body" to="Obsta/ParedeFrente/Porta" method="_on_button_body_porta_ab"]
 [connection signal="rot_x" from="Grav_changer" to="." method="_on_grav_changer_rot_x"]

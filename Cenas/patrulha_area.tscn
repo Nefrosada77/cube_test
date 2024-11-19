@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkvpafmhp4vjx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_760g5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2dux"]
+albedo_color = Color(1, 0.986167, 0.17, 1)
+
+[node name="PatrulhaÁrea" type="Node3D"]
+
+[node name="ponto_patrulha" type="MeshInstance3D" parent="." groups=["pontos_patrulha"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.1785, 1.23366, -15.3253)
+mesh = SubResource("SphereMesh_760g5")
+surface_material_override/0 = SubResource("StandardMaterial3D_u2dux")
+
+[node name="ponto_patrulha2" type="MeshInstance3D" parent="." groups=["pontos_patrulha"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.1856, 1.23366, -15.3253)
+mesh = SubResource("SphereMesh_760g5")
+surface_material_override/0 = SubResource("StandardMaterial3D_u2dux")
+
+[node name="ponto_patrulha3" type="MeshInstance3D" parent="." groups=["pontos_patrulha"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.77383, 1.23366, -15.3253)
+mesh = SubResource("SphereMesh_760g5")
+surface_material_override/0 = SubResource("StandardMaterial3D_u2dux")
+
+[node name="ponto_patrulha4" type="MeshInstance3D" parent="." groups=["pontos_patrulha"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 17.9408, 1.23366, -15.3253)
+mesh = SubResource("SphereMesh_760g5")
+surface_material_override/0 = SubResource("StandardMaterial3D_u2dux")

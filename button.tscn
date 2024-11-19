@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://jl2fmillwcea"]
+
+[ext_resource type="Script" path="res://botao.gd" id="1_x3muw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppgbc"]
+size = Vector3(0.8, 0.8, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8bqn"]
+albedo_color = Color(0.552956, 0.552956, 0.552956, 1)
+metallic = 0.5
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_46ylo"]
+material = SubResource("StandardMaterial3D_i8bqn")
+size = Vector3(0.8, 0.8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obnp6"]
+albedo_color = Color(1, 0, 0, 1)
+metallic_specular = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_33ekh"]
+material = SubResource("StandardMaterial3D_obnp6")
+size = Vector3(0.5, 0.5, 0.2)
+
+[node name="Button_body" type="StaticBody3D" groups=["Interact"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, -5)
+script = ExtResource("1_x3muw")
+
+[node name="Button_coll" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+shape = SubResource("BoxShape3D_ppgbc")
+
+[node name="Bot_Inf" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_46ylo")
+skeleton = NodePath("")
+
+[node name="Bot_sup" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+mesh = SubResource("BoxMesh_33ekh")
+skeleton = NodePath("")
